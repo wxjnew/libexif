@@ -38,7 +38,6 @@
 #define ESL_NNMM { EXIF_SUPPORT_LEVEL_NOT_RECORDED, EXIF_SUPPORT_LEVEL_NOT_RECORDED, EXIF_SUPPORT_LEVEL_MANDATORY, EXIF_SUPPORT_LEVEL_MANDATORY }
 #define ESL_NNNM { EXIF_SUPPORT_LEVEL_NOT_RECORDED, EXIF_SUPPORT_LEVEL_NOT_RECORDED, EXIF_SUPPORT_LEVEL_NOT_RECORDED, EXIF_SUPPORT_LEVEL_MANDATORY }
 #define ESL_NNNO { EXIF_SUPPORT_LEVEL_NOT_RECORDED, EXIF_SUPPORT_LEVEL_NOT_RECORDED, EXIF_SUPPORT_LEVEL_NOT_RECORDED, EXIF_SUPPORT_LEVEL_OPTIONAL }
-#define ESL_MMNN { EXIF_SUPPORT_LEVEL_MANDATORY, EXIF_SUPPORT_LEVEL_MANDATORY, EXIF_SUPPORT_LEVEL_NOT_RECORDED, EXIF_SUPPORT_LEVEL_NOT_RECORDED }
 #define ESL_NMNN { EXIF_SUPPORT_LEVEL_NOT_RECORDED, EXIF_SUPPORT_LEVEL_MANDATORY, EXIF_SUPPORT_LEVEL_NOT_RECORDED, EXIF_SUPPORT_LEVEL_NOT_RECORDED }
 #define ESL_NOMN { EXIF_SUPPORT_LEVEL_NOT_RECORDED, EXIF_SUPPORT_LEVEL_OPTIONAL, EXIF_SUPPORT_LEVEL_MANDATORY, EXIF_SUPPORT_LEVEL_NOT_RECORDED }
 #define ESL_UUUU { EXIF_SUPPORT_LEVEL_UNKNOWN, EXIF_SUPPORT_LEVEL_UNKNOWN, EXIF_SUPPORT_LEVEL_UNKNOWN, EXIF_SUPPORT_LEVEL_UNKNOWN }
@@ -234,23 +233,23 @@ static const struct TagEntry {
 	 N_("The number of columns of image data, equal to the number of "
 	    "pixels per row. In JPEG compressed data a JPEG marker is "
 	    "used instead of this tag."),
-	 { ESL_MMNN, ESL_MMNN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
+	 { ESL_MMMN, ESL_MMMN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
 	{EXIF_TAG_IMAGE_LENGTH, "ImageLength", N_("Image Length"),
 	 N_("The number of rows of image data. In JPEG compressed data a "
 	    "JPEG marker is used instead of this tag."),
-	 { ESL_MMNN, ESL_MMNN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
+	 { ESL_MMMN, ESL_MMMN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
 	{EXIF_TAG_BITS_PER_SAMPLE, "BitsPerSample", N_("Bits per Sample"),
 	 N_("The number of bits per image component. In this standard each "
 	    "component of the image is 8 bits, so the value for this "
 	    "tag is 8. See also <SamplesPerPixel>. In JPEG compressed data "
 	    "a JPEG marker is used instead of this tag."),
-	 { ESL_MMNN, ESL_MMNN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
+	 { ESL_MMMN, ESL_MMMN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
 	{EXIF_TAG_COMPRESSION, "Compression", N_("Compression"),
 	 N_("The compression scheme used for the image data. When a "
 	    "primary image is JPEG compressed, this designation is "
 	    "not necessary and is omitted. When thumbnails use JPEG "
 	    "compression, this tag value is set to 6."),
-	 { ESL_MMMN, ESL_MMMN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
+	 { ESL_MMMN, ESL_MMMM, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
 	{EXIF_TAG_PHOTOMETRIC_INTERPRETATION, "PhotometricInterpretation",
 	 N_("Photometric Interpretation"),
 	 N_("The pixel composition. In JPEG compressed data a JPEG "
@@ -289,7 +288,7 @@ static const struct TagEntry {
 	    "bytes does not exceed 64 Kbytes. With JPEG compressed "
 	    "data this designation is not needed and is omitted. See also "
 	    "<RowsPerStrip> and <StripByteCounts>."),
-	 { ESL_MMNN, ESL_MMNN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
+	 { ESL_MMMN, ESL_MMMN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
 	{EXIF_TAG_ORIENTATION, "Orientation", N_("Orientation"),
 	 N_("The image orientation viewed in terms of rows and columns."),
 	 { ESL_OOOO, ESL_OOOO, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
@@ -299,18 +298,18 @@ static const struct TagEntry {
 	    "to RGB and YCbCr images, the value set for this tag is 3. "
 	    "In JPEG compressed data a JPEG marker is used instead of this "
 	    "tag."),
-	 { ESL_MMNN, ESL_MMNN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
+	 { ESL_MMMN, ESL_MMMN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
 	{EXIF_TAG_ROWS_PER_STRIP, "RowsPerStrip", N_("Rows per Strip"),
 	 N_("The number of rows per strip. This is the number of rows "
 	    "in the image of one strip when an image is divided into "
 	    "strips. With JPEG compressed data this designation is not "
 	    "needed and is omitted. See also <StripOffsets> and "
 	    "<StripByteCounts>."),
-	 { ESL_MMNN, ESL_MMNN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
+	 { ESL_MMMN, ESL_MMMN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
 	{EXIF_TAG_STRIP_BYTE_COUNTS, "StripByteCounts", N_("Strip Byte Count"),
 	 N_("The total number of bytes in each strip. With JPEG compressed "
 	    "data this designation is not needed and is omitted."),
-	 { ESL_MMNN, ESL_MMNN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
+	 { ESL_MMMN, ESL_MMMN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
 	{EXIF_TAG_X_RESOLUTION, "XResolution", N_("X-Resolution"),
 	 N_("The number of pixels per <ResolutionUnit> in the <ImageWidth> "
 	    "direction. When the image resolution is unknown, 72 [dpi] "
@@ -379,7 +378,7 @@ static const struct TagEntry {
 	 N_("The offset to the start byte (SOI) of JPEG compressed "
 	    "thumbnail data. This is not used for primary image "
 	    "JPEG data."),
-	 { ESL_NNMN, ESL_NNNM, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
+	 { ESL_NNNN, ESL_NNNM, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
 	{EXIF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH,
 	 "JPEGInterchangeFormatLength", N_("JPEG Interchange Format Length"),
 	 N_("The number of bytes of JPEG compressed thumbnail data. This "
@@ -389,7 +388,7 @@ static const struct TagEntry {
 	    "not be recorded. Compressed thumbnails must be recorded in no "
 	    "more than 64 Kbytes, including all other data to be "
 	    "recorded in APP1."),
-	 { ESL_NNMN, ESL_NNNM, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
+	 { ESL_NNNN, ESL_NNNM, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
 	{EXIF_TAG_YCBCR_COEFFICIENTS, "YCbCrCoefficients",
 	 N_("YCbCr Coefficients"),
 	 N_("The matrix coefficients for transformation from RGB to YCbCr "
@@ -405,7 +404,7 @@ static const struct TagEntry {
 	 N_("The sampling ratio of chrominance components in relation to the "
 	    "luminance component. In JPEG compressed data a JPEG marker "
 	    "is used instead of this tag."),
-	 { ESL_NMNN, ESL_NNMN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
+	 { ESL_NNMN, ESL_NNMN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
 	{EXIF_TAG_YCBCR_POSITIONING, "YCbCrPositioning",
 	 N_("YCbCr Positioning"),
 	 N_("The position of chrominance components in relation to the "
@@ -421,7 +420,7 @@ static const struct TagEntry {
 	    "<YCbCrPositioning>, it shall follow the TIFF default regardless "
 	    "of the value in this field. It is preferable that readers "
 	    "be able to support both centered and co-sited positioning."),
-	 { ESL_NOMN, ESL_NNOO, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
+	 { ESL_NNMM, ESL_NNOO, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
 	{EXIF_TAG_REFERENCE_BLACK_WHITE, "ReferenceBlackWhite",
 	 N_("Reference Black/White"),
 	 N_("The reference black point value and reference white point "
@@ -515,7 +514,7 @@ static const struct TagEntry {
 	 N_("A pointer to the GPS Info IFD. The "
 	    "Interoperability structure of the GPS Info IFD, like that of "
 	    "Exif IFD, has no image data."),
-	 { ESL_OOOO, ESL_NNNN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
+	 { ESL_NNNN, ESL_NNNN, ESL_NNNN, ESL_NNNN, ESL_NNNN } },
 	{EXIF_TAG_ISO_SPEED_RATINGS, "ISOSpeedRatings",
 	 N_("ISO Speed Ratings"),
 	 N_("Indicates the ISO Speed and ISO Latitude of the camera or "
