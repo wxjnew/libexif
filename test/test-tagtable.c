@@ -63,11 +63,12 @@ static int support_level(void)
 
     /*
      * The tag EXIF_TAG_YCBCR_POSITIONING support varies greatly between
-     * IFDs. Per EXIF 3.1, IFD0 COMPRESSED is NOT_RECORDED (J=in JPEG marker).
+     * IFDs. IFD0 COMPRESSED is MANDATORY (YCbCr positioning is required
+     * for JPEG/YCC compressed images).
      */
     VALIDATE(exif_tag_get_support_level_in_ifd(EXIF_TAG_YCBCR_POSITIONING,
                EXIF_IFD_0, EXIF_DATA_TYPE_COMPRESSED) ==
-             EXIF_SUPPORT_LEVEL_NOT_RECORDED)
+             EXIF_SUPPORT_LEVEL_MANDATORY)
 
     VALIDATE(exif_tag_get_support_level_in_ifd(EXIF_TAG_YCBCR_POSITIONING,
                EXIF_IFD_1, EXIF_DATA_TYPE_COMPRESSED) == 
