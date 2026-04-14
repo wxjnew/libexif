@@ -673,6 +673,12 @@ static const struct TagEntry {
 	    "the ID code be ASCII and that the following user comment "
 	    "part be filled with blank characters [20.H]."),
 	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_LEARNING_OPT_OUT_IN, "LearningOptOutIn", N_("Learning Opt Out In"),
+	 N_("This tag indicates the camera user's intention to permit or "
+	    "prohibit image data analysis for AI/ML model training. "
+	    "0 = Opt Out (prohibit), 1 = Opt In (permit)."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
 	{EXIF_TAG_SUB_SEC_TIME, "SubsecTime", N_("Sub-second Time"),
 	 N_("A tag used to record fractions of seconds for the "
 	    "<DateTime> tag."),
@@ -686,6 +692,44 @@ static const struct TagEntry {
 	 N_("Sub-second Time (Digitized)"),
 	 N_("A tag used to record fractions of seconds for the "
 	    "<DateTimeDigitized> tag."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_TEMPERATURE, "Temperature", N_("Temperature"),
+	 N_("Temperature as the ambient situation at the shot, for example "
+	    "the room temperature where the photographer was holding the "
+	    "camera. The unit is degrees C."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_HUMIDITY, "Humidity", N_("Humidity"),
+	 N_("Humidity as the ambient situation at the shot, for example the "
+	    "room humidity where the photographer was holding the camera. "
+	    "The unit is %."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_PRESSURE, "Pressure", N_("Pressure"),
+	 N_("Pressure as the ambient situation at the shot, for example the "
+	    "room atmospheric pressure where the photographer was holding the "
+	    "camera. The unit is hPa."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_WATER_DEPTH, "WaterDepth", N_("Water Depth"),
+	 N_("Water depth as the ambient situation at the shot, for example the "
+	    "water depth of the camera at underwater photography. "
+	    "The unit is m."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_ACCELERATION, "Acceleration", N_("Acceleration"),
+	 N_("Acceleration (a scalar regardless of direction) as the ambient "
+	    "situation at the shot, for example the driving acceleration of "
+	    "the vehicle which the photographer rode at the shot. "
+	    "The unit is mGal (10^-5 m/s^2)."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_CAMERA_ELEVATION_ANGLE, "CameraElevationAngle",
+	 N_("Camera Elevation Angle"),
+	 N_("The elevation/depression angle of the orientation of the camera "
+	    "(imaging optical axis) as the ambient situation at the shot. "
+	    "The unit is degrees."),
 	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
 	/* Not in EXIF 2.2 (Microsoft extension) */
 	{EXIF_TAG_XP_TITLE, "XPTitle", N_("XP Title"),
@@ -905,6 +949,42 @@ static const struct TagEntry {
 	 N_("Subject Distance Range"),
 	 N_("This tag indicates the distance to the subject."),
 	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_DEVELOPMENT_TYPE, "DevelopmentType", N_("Development Type"),
+	 N_("This tag indicates the type of image processing applied during "
+	    "development from RAW data. 0 = Standard, 1 = Custom."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_DEVELOPMENT_TYPE_DESCRIPTION, "DevelopmentTypeDescription",
+	 N_("Development Type Description"),
+	 N_("This tag records the name of the development type applied when "
+	    "the DevelopmentType tag value is 1 (Custom). The string is "
+	    "encoded as ASCII or UTF-8."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_DISTORTION_CORRECTION, "DistortionCorrection",
+	 N_("Distortion Correction"),
+	 N_("This tag indicates whether distortion correction has been "
+	    "applied to the image. 0 = Not corrected, 1 = Corrected."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_CHROMATIC_ABERRATION_CORRECTION, "ChromaticAberrationCorrection",
+	 N_("Chromatic Aberration Correction"),
+	 N_("This tag indicates whether chromatic aberration correction has "
+	    "been applied to the image. 0 = Not corrected, 1 = Corrected."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_SHADING_CORRECTION, "ShadingCorrection",
+	 N_("Shading Correction"),
+	 N_("This tag indicates whether shading correction (lens vignetting "
+	    "correction) has been applied to the image. "
+	    "0 = Not corrected, 1 = Corrected."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_NOISE_REDUCTION, "NoiseReduction", N_("Noise Reduction"),
+	 N_("This tag indicates whether noise reduction has been applied to "
+	    "the image. 0 = Not processed, 1 = Processed."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
 	{EXIF_TAG_IMAGE_UNIQUE_ID, "ImageUniqueID", N_("Image Unique ID"),
 	 N_("This tag indicates an identifier assigned uniquely to "
 	    "each image. It is recorded as an ASCII string equivalent "
@@ -937,6 +1017,44 @@ static const struct TagEntry {
 	/* EXIF 2.3 */
 	{EXIF_TAG_LENS_SERIAL_NUMBER, "LensSerialNumber", N_("Lens Serial Number"),
 	 N_("This tag indicates the serial number of the interchangeable lens."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_IMAGE_TITLE, "ImageTitle", N_("Image Title"),
+	 N_("This tag records the title of the image. The string is encoded "
+	    "as ASCII or UTF-8."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_PHOTOGRAPHER, "Photographer", N_("Photographer"),
+	 N_("This tag records the name of the photographer. The string is "
+	    "encoded as ASCII or UTF-8."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_IMAGE_EDITOR, "ImageEditor", N_("Image Editor"),
+	 N_("This tag records the name of the person who edited the image. "
+	    "The string is encoded as ASCII or UTF-8."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_CAMERA_FIRMWARE, "CameraFirmware", N_("Camera Firmware"),
+	 N_("This tag records the camera firmware version at the time of "
+	    "shooting. The string is encoded as ASCII or UTF-8."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_RAW_DEVELOPING_SOFTWARE, "RAWDevelopingSoftware",
+	 N_("RAW Developing Software"),
+	 N_("This tag records the name and version of the software used to "
+	    "develop the RAW image. The string is encoded as ASCII or UTF-8."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_IMAGE_EDITING_SOFTWARE, "ImageEditingSoftware",
+	 N_("Image Editing Software"),
+	 N_("This tag records the name and version of the software used to "
+	    "edit the image. The string is encoded as ASCII or UTF-8."),
+	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
+	/* EXIF 3.1 */
+	{EXIF_TAG_METADATA_EDITING_SOFTWARE, "MetadataEditingSoftware",
+	 N_("Metadata Editing Software"),
+	 N_("This tag records the name and version of the software used to "
+	    "edit the metadata. The string is encoded as ASCII or UTF-8."),
 	 { ESL_NNNN, ESL_NNNN, ESL_OOOO, ESL_NNNN, ESL_NNNN } },
 	/* EXIF 2.32 */
 	{EXIF_TAG_COMPOSITE_IMAGE, "CompositeImage", N_("Composite Image"),

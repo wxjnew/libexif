@@ -1419,6 +1419,103 @@ exif_entry_get_value (ExifEntry *e, char *val, unsigned int maxlen)
 		break;
 	}
 
+	case EXIF_TAG_TEMPERATURE:
+		CF (e, EXIF_FORMAT_SRATIONAL, val, maxlen)
+		CC (e, 1, val, maxlen)
+		v_srat = exif_get_srational (e->data, o);
+		if (!v_srat.denominator) {
+			exif_entry_format_value(e, val, maxlen);
+			break;
+		}
+		d = (double) v_srat.numerator / (double) v_srat.denominator;
+		snprintf (val, maxlen, _("%.1f degrees C"), d);
+		break;
+
+	case EXIF_TAG_HUMIDITY:
+		CF (e, EXIF_FORMAT_RATIONAL, val, maxlen)
+		CC (e, 1, val, maxlen)
+		v_rat = exif_get_rational (e->data, o);
+		if (!v_rat.denominator) {
+			exif_entry_format_value(e, val, maxlen);
+			break;
+		}
+		d = (double) v_rat.numerator / (double) v_rat.denominator;
+		snprintf (val, maxlen, _("%.1f %%"), d);
+		break;
+
+	case EXIF_TAG_PRESSURE:
+		CF (e, EXIF_FORMAT_RATIONAL, val, maxlen)
+		CC (e, 1, val, maxlen)
+		v_rat = exif_get_rational (e->data, o);
+		if (!v_rat.denominator) {
+			exif_entry_format_value(e, val, maxlen);
+			break;
+		}
+		d = (double) v_rat.numerator / (double) v_rat.denominator;
+		snprintf (val, maxlen, _("%.1f hPa"), d);
+		break;
+
+	case EXIF_TAG_WATER_DEPTH:
+		CF (e, EXIF_FORMAT_SRATIONAL, val, maxlen)
+		CC (e, 1, val, maxlen)
+		v_srat = exif_get_srational (e->data, o);
+		if (!v_srat.denominator) {
+			exif_entry_format_value(e, val, maxlen);
+			break;
+		}
+		d = (double) v_srat.numerator / (double) v_srat.denominator;
+		snprintf (val, maxlen, _("%.2f m"), d);
+		break;
+
+	case EXIF_TAG_ACCELERATION:
+		CF (e, EXIF_FORMAT_RATIONAL, val, maxlen)
+		CC (e, 1, val, maxlen)
+		v_rat = exif_get_rational (e->data, o);
+		if (!v_rat.denominator) {
+			exif_entry_format_value(e, val, maxlen);
+			break;
+		}
+		d = (double) v_rat.numerator / (double) v_rat.denominator;
+		snprintf (val, maxlen, _("%.2f mGal"), d);
+		break;
+
+	case EXIF_TAG_CAMERA_ELEVATION_ANGLE:
+		CF (e, EXIF_FORMAT_SRATIONAL, val, maxlen)
+		CC (e, 1, val, maxlen)
+		v_srat = exif_get_srational (e->data, o);
+		if (!v_srat.denominator) {
+			exif_entry_format_value(e, val, maxlen);
+			break;
+		}
+		d = (double) v_srat.numerator / (double) v_srat.denominator;
+		snprintf (val, maxlen, _("%.1f degrees"), d);
+		break;
+
+	case EXIF_TAG_DEVELOPMENT_TYPE:
+		CF (e, EXIF_FORMAT_SHORT, val, maxlen)
+		CC (e, 1, val, maxlen)
+		v_short = exif_get_short (e->data, o);
+		switch (v_short) {
+		case 0: strncpy (val, _("Standard"), maxlen - 1); break;
+		case 1: strncpy (val, _("Custom"), maxlen - 1); break;
+		default: snprintf (val, maxlen, _("Unknown (%i)"), v_short); break;
+		}
+		break;
+
+	case EXIF_TAG_DISTORTION_CORRECTION:
+	case EXIF_TAG_CHROMATIC_ABERRATION_CORRECTION:
+	case EXIF_TAG_SHADING_CORRECTION:
+	case EXIF_TAG_NOISE_REDUCTION:
+		CF (e, EXIF_FORMAT_SHORT, val, maxlen)
+		CC (e, 1, val, maxlen)
+		v_short = exif_get_short (e->data, o);
+		switch (v_short) {
+		case 0: strncpy (val, _("Not corrected"), maxlen - 1); break;
+		case 1: strncpy (val, _("Corrected"), maxlen - 1); break;
+		default: snprintf (val, maxlen, _("Unknown (%i)"), v_short); break;
+		}
+		break;
+
 	default:
 		/* Use a generic value formatting */
 		exif_entry_format_value(e, val, maxlen);
@@ -1518,6 +1615,11 @@ exif_entry_initialize (ExifEntry *e, ExifTag tag)
 	case EXIF_TAG_ISO_SPEED_RATINGS:
 	case EXIF_TAG_SENSITIVITY_TYPE:
 	case EXIF_TAG_COMPOSITE_IMAGE:
+	case EXIF_TAG_DEVELOPMENT_TYPE:
+	case EXIF_TAG_DISTORTION_CORRECTION:
+	case EXIF_TAG_CHROMATIC_ABERRATION_CORRECTION:
+	case EXIF_TAG_SHADING_CORRECTION:
+	case EXIF_TAG_NOISE_REDUCTION:
 
 	/* SHORT, 1 component, default 0 */
 	case EXIF_TAG_IMAGE_WIDTH:
@@ -1627,6 +1729,9 @@ exif_entry_initialize (ExifEntry *e, ExifTag tag)
 	case EXIF_TAG_EXPOSURE_BIAS_VALUE:
 	case EXIF_TAG_BRIGHTNESS_VALUE:
 	case EXIF_TAG_SHUTTER_SPEED_VALUE:
+	case EXIF_TAG_TEMPERATURE:
+	case EXIF_TAG_WATER_DEPTH:
+	case EXIF_TAG_CAMERA_ELEVATION_ANGLE:
 		e->components = 1;
 		e->format = EXIF_FORMAT_SRATIONAL;
 		e->size = exif_format_get_size (e->format) * e->components;
@@ -1649,6 +1754,9 @@ exif_entry_initialize (ExifEntry *e, ExifTag tag)
 	case EXIF_TAG_PRIMARY_CHROMATICITIES:
 	case EXIF_TAG_DIGITAL_ZOOM_RATIO:
 	case EXIF_TAG_GAMMA:
+	case EXIF_TAG_HUMIDITY:
+	case EXIF_TAG_PRESSURE:
+	case EXIF_TAG_ACCELERATION:
 		e->components = 1;
 		e->format = EXIF_FORMAT_RATIONAL;
 		e->size = exif_format_get_size (e->format) * e->components;
