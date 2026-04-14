@@ -65,3 +65,34 @@ depcomp
 INSTALL
 test-driver
 ChangeLog.git
+
+# Autotools build artifacts
+*.la
+*.lo
+.deps/
+.libs/
+.dirstamp
+
+# Test binaries and results
+test/test-mem
+test/test-value
+test/test-integers
+test/test-parse
+test/test-parse-from-data
+test/test-tagtable
+test/test-sorted
+test/test-fuzzer
+test/test-null
+test/test-gps
+test/test-mnote
+test/test-extract
+test/*.trs
+test/test-suite.log
+
+# Example binaries
+contrib/examples/photographer
+contrib/examples/thumbnail
+contrib/examples/write-exif
+
+# macOS
+.DS_Store
